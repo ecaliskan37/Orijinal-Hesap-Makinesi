@@ -31,9 +31,11 @@ export default function App() {
     !currentNum[0] && !previousNum[0] && operation && result[0]
 
   function handleClick(event) {
+    console.log(event)
     const numFromClick = event.target.dataset.number
     const opFromClick = event.target.dataset.operation
     const otherFromClick = event.target.dataset.other
+    console.log(otherFromClick)
     const percentFromClick =
       otherFromClick === 'percent' ? otherFromClick : undefined
     const decimalFromClick =
@@ -83,10 +85,10 @@ Hesap makinesinin çalışmasını sağlamak için *sadece* aşağıdaki üç g�
 
     if (numFromClick) {
       if (conditionOne || conditionTwo || conditionThree || conditionFour) {
-        setCurrentCalc({
-          ...currentCalc,
-          currentNum: [...currentNum, numFromClick],
-        })
+        setCurrentCalc((x) => ({
+          ...x,
+          currentNum: [...x.currentNum, numFromClick],
+        }))
         /* Görev 1/3 - Bir Sayı Oluşturma 
 
         setCurrentCalc
@@ -112,12 +114,12 @@ Hesap makinesinin çalışmasını sağlamak için *sadece* aşağıdaki üç g�
 ---------------Aşağıdaki 2. görev için kodunuzu yazın.------------------------------------------------*/
         /*-------------Yukarıdaki 2. görev için kodunuzu yazın.------------------------------------------------*/
       } else if (conditionSix) {
-        setCurrentCalc({
-          currentCalc,
+        setCurrentCalc((x) => ({
+          ...x,
+          previousNum: [...x.result],
+          currentNum: [...x.currentNum, numFromClick],
           result: [],
-          previousNum: [...previousNum, currentCalc.result],
-          currentNum: [...currentNum, numFromClick],
-        })
+        }))
 
         /* Görev 3/3 - Hesaplamaya Devam Etme 
             
